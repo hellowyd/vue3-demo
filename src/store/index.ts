@@ -1,30 +1,15 @@
-import { createStore } from 'vuex';
+import { createStore, StoreOptions } from 'vuex'
+import state from './modules/states'
+import actions from './modules/actions'
+import mutations from './modules/mutations'
+import getters from './modules/getters'
+import { State } from './types'
 
-export interface State{
-      typeId: String,
-      showName: Boolean,
-      count: Number,
+const stroe: StoreOptions<State> = {
+	state,
+	mutations,
+	actions,
+	getters,
 }
 
-export default createStore(
-  {
-     state:{
-         typeId: 'user001',
-         showName: true,
-         count: 0,
-    },
-    mutations:{
-      showUserName(state){
-          state.showName = false
-      },
-      updateCount(state){
-          state.count+=10
-      }
-    },
-    actions:{
-      addCount({commit}){
-          commit('updateCount')
-      }
-    }
-  }
-)
+export default createStore(stroe)

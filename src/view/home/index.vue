@@ -2,6 +2,7 @@
 	<div class="wrap">
 		<img alt="Vue logo" src="@/assets/logo.png" />
 		<h1>{{ store.state.count }}</h1>
+		<p>{{ $store.getters.userName }}</p>
 		<p>{{ $store._state.data.typeId }}</p>
 		<button @click="addCount">增加</button>
 	</div>
@@ -21,7 +22,7 @@ export default defineComponent({
 		return { msg, store, addCount }
 	},
 	created() {
-		console.log()
+		console.log(this.$store)
 	},
 })
 </script>
