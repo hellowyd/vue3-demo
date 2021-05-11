@@ -1,10 +1,15 @@
 <template>
 	<div class="wrap">
-		<img alt="Vue logo" src="@/assets/logo.png" />
-		<h1>{{ store.state.count }}</h1>
-		<p>{{ $store.getters.userName }}</p>
-		<p>{{ $store._state.data.typeId }}</p>
-		<button @click="addCount">增加</button>
+		<van-nav-bar
+			title="标题"
+			@click-left="onClickLeft"
+			@click-right="onClickRight"
+		/>
+		<van-progress
+			:percentage="store.state.count"
+			style="margin-top: 50px"
+		/>
+		<van-button type="success" @click="addCount">添加</van-button>
 	</div>
 </template>
 <script lang="ts">
@@ -17,7 +22,7 @@ export default defineComponent({
 		const store = useStore()
 		const msg = ref('vue')
 		const addCount = function () {
-			store.dispatch('addCount')
+			store.state.count < 100 && store.dispatch('addCount')
 		}
 		return { msg, store, addCount }
 	},
